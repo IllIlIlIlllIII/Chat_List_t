@@ -9,12 +9,22 @@
     box-sizing: border-box;
 }
 
-/* Title row */
 .cm-title-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-bottom: 4px;
+}
+
+.cm-title {
+    font-size: calc(var(--mainFontSize, 15px) * 1.15);
+    font-weight: 600;
+    color: var(--SmartThemeBodyColor, #ccc);
+    margin-right: auto;
+}
+
+.cm-title-row > .cm-action-btn + .cm-action-btn {
+    margin-left: 4px;
 }
 
 .cm-title {
