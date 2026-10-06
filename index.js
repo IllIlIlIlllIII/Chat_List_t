@@ -234,27 +234,25 @@ let chatListRefreshRunning = false;
  * Welcome 화면이 아닐 때는 불필요한 API 요청을 하지 않는다.
  */
 async function refreshChatListIfVisible() {
-    const container = document.getElementById('cm-container');
-
-    if (!container) {
-        return;
-    }
-
-    const welcomePanel = container.closest('.welcomePanel');
-
-    if (!welcomePanel) {
-        return;
-    }
-
-    // hidden 상태라면 갱신하지 않음
-    if (welcomePanel.offsetParent === null) {
-        return;
-    }
-
-    // 연속 이벤트가 들어오는 경우 한 번만 실행
     clearTimeout(chatListRefreshTimer);
 
     chatListRefreshTimer = setTimeout(async () => {
+        const container = document.getElementById('cm-container');
+
+        if (!container) {
+            return;
+        }
+
+        const welcomePanel = container.closest('.welcomePanel');
+
+        if (!welcomePanel) {
+            return;
+        }
+
+        if (welcomePanel.offsetParent === null) {
+            return;
+        }
+
         if (chatListRefreshRunning) {
             return;
         }
@@ -269,10 +267,8 @@ async function refreshChatListIfVisible() {
             const filter =
                 filterInput?.value?.trim() ?? '';
 
-            // 기존 캐시 제거
             cachedChats = null;
 
-            // 로딩 표시
             const loader =
                 container.querySelector('#cm-loader');
 
@@ -280,7 +276,6 @@ async function refreshChatListIfVisible() {
                 loader.classList.remove('hidden');
             }
 
-            // 첫 페이지부터 다시 렌더링
             await renderChatList(
                 container,
                 filter,
