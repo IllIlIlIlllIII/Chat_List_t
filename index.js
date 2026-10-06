@@ -1253,3 +1253,14 @@ function renderExtensionSettings() {
     });
 }
 
+// =========================
+// Init
+// =========================
+(function init() {
+    const settings = getSettings();
+    renderExtensionSettings();
+    if (settings.enabled === false) {
+        return;}
+    setupChatListAutoRefresh();
+    setupWelcomePageObserver();
+})();
