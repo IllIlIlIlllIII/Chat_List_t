@@ -289,7 +289,7 @@ async function refreshChatListIfVisible() {
         } finally {
             chatListRefreshRunning = false;
         }
-    }, 50);
+    }, 30);
 }
 
 /**
